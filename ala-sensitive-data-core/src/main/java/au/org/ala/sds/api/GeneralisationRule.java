@@ -83,7 +83,7 @@ public class GeneralisationRule {
      * @return The equivalent lat/long precision.
      */
     protected double buildPrecision(int generalisationInMetres) {
-        if (generalisationInMetres <= 1000)
+        if (generalisationInMetres <= 2000)
             return 0.01;
         if (generalisationInMetres <= 10000)
             return 0.1;
@@ -99,7 +99,7 @@ public class GeneralisationRule {
      * @return The equivalent lat/long precision.
      */
     protected NumberFormat buildFormat(int generalisationInMetres) {
-        if (generalisationInMetres <= 1000)
+        if (generalisationInMetres <= 2000)
             return new DecimalFormat("0.00");
         if (generalisationInMetres <= 10000)
             return new DecimalFormat("0.0");

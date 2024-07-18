@@ -3,6 +3,8 @@ package au.org.ala.sds.api;
 import au.org.ala.util.TestUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -16,12 +18,20 @@ public class GeneralisationRuleTest extends TestUtils {
         assertEquals(0.01, rule.getPrecision(), 0.0001);
     }
 
+//    @Test
+//    public void testConstruct2() throws Exception {
+//        GeneralisationRule rule = new GeneralisationRule("2km");
+//        assertEquals("2km", rule.getGeneralisation());
+//        assertEquals(2000, rule.getGeneralisationInMetres());
+//        assertEquals(0.1, rule.getPrecision(), 0.0001);
+//    }
+
     @Test
-    public void testConstruct2() throws Exception {
+    public void testConstruct2NBN() throws Exception {
         GeneralisationRule rule = new GeneralisationRule("2km");
         assertEquals("2km", rule.getGeneralisation());
         assertEquals(2000, rule.getGeneralisationInMetres());
-        assertEquals(0.1, rule.getPrecision(), 0.0001);
+        assertEquals(0.01, rule.getPrecision(), 0.0001);
     }
 
     @Test
@@ -168,4 +178,18 @@ public class GeneralisationRuleTest extends TestUtils {
         assertEquals("0", rule.format(0));
     }
 
+    @ParameterizedTest
+    @CsvSource({
+            "100km, 100000, 1",
+            "50km, 50000, 1",
+            "10km, 10000, 0.1",
+            "2km, 2000, 0.01",
+            "1km, 1000, 0.01"
+    })
+    public void nbnTestGeneralisationAndPrecisionValues(String generalisation, int expectedGeneralisationInMetres, double expectedPrecision) {
+        GeneralisationRule rule = new GeneralisationRule(generalisation);
+        assertEquals(generalisation, rule.getGeneralisation());
+        assertEquals(expectedGeneralisationInMetres, rule.getGeneralisationInMetres());
+        assertEquals(expectedPrecision, rule.getPrecision(), 0.0001);
+    }
 }
