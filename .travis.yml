@@ -5,9 +5,8 @@ jdk:
 - oraclejdk8
 branches:
   only:
-  - master
-  - develop
-  - maintenance-1.1
+  - master-nbn
+
 before_install:
 - mkdir -p ~/.m2; wget -q -O ~/.m2/settings.xml https://raw.githubusercontent.com/nbnuk/travis-build-configuration/master/travis_maven_settings.xml
 - sudo mkdir -p /data/lucene; sudo wget -O /data/lucene/namematching-20210811-3.tgz
