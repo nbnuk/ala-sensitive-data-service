@@ -178,15 +178,65 @@ public class GeneralisationRuleTest extends TestUtils {
         assertEquals("0", rule.format(0));
     }
 
-    @ParameterizedTest
-    @CsvSource({
-            "100km, 100000, 1",
-            "50km, 50000, 1",
-            "10km, 10000, 0.1",
-            "2km, 2000, 0.01",
-            "1km, 1000, 0.01"
-    })
-    public void nbnTestGeneralisationAndPrecisionValues(String generalisation, int expectedGeneralisationInMetres, double expectedPrecision) {
+    @Test
+    public void nbnTestGeneralisationAndPrecisionValues_100km() {
+
+        String generalisation = "100km";
+        int expectedGeneralisationInMetres = 100000;
+        double expectedPrecision = 1;
+
+        GeneralisationRule rule = new GeneralisationRule(generalisation);
+        assertEquals(generalisation, rule.getGeneralisation());
+        assertEquals(expectedGeneralisationInMetres, rule.getGeneralisationInMetres());
+        assertEquals(expectedPrecision, rule.getPrecision(), 0.0001);
+    }
+
+    @Test
+    public void nbnTestGeneralisationAndPrecisionValues_50km() {
+
+        String generalisation = "50km";
+        int expectedGeneralisationInMetres = 50000;
+        double expectedPrecision = 1;
+
+        GeneralisationRule rule = new GeneralisationRule(generalisation);
+        assertEquals(generalisation, rule.getGeneralisation());
+        assertEquals(expectedGeneralisationInMetres, rule.getGeneralisationInMetres());
+        assertEquals(expectedPrecision, rule.getPrecision(), 0.0001);
+    }
+
+    @Test
+    public void nbnTestGeneralisationAndPrecisionValues_10km() {
+
+        String generalisation = "10km";
+        int expectedGeneralisationInMetres = 10000;
+        double expectedPrecision = 0.1;
+
+        GeneralisationRule rule = new GeneralisationRule(generalisation);
+        assertEquals(generalisation, rule.getGeneralisation());
+        assertEquals(expectedGeneralisationInMetres, rule.getGeneralisationInMetres());
+        assertEquals(expectedPrecision, rule.getPrecision(), 0.0001);
+    }
+
+    @Test
+    public void nbnTestGeneralisationAndPrecisionValues_2km() {
+
+        String generalisation = "2km";
+        int expectedGeneralisationInMetres = 2000;
+        double expectedPrecision = 0.01;
+
+        GeneralisationRule rule = new GeneralisationRule(generalisation);
+        assertEquals(generalisation, rule.getGeneralisation());
+        assertEquals(expectedGeneralisationInMetres, rule.getGeneralisationInMetres());
+        assertEquals(expectedPrecision, rule.getPrecision(), 0.0001);
+    }
+
+    @Test
+    public void nbnTestGeneralisationAndPrecisionValues_1km() {
+
+        String generalisation = "1km";
+        int expectedGeneralisationInMetres = 1000;
+        double expectedPrecision = 0.01;
+
         GeneralisationRule rule = new GeneralisationRule(generalisation);
         assertEquals(generalisation, rule.getGeneralisation());
         assertEquals(expectedGeneralisationInMetres, rule.getGeneralisationInMetres());

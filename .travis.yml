@@ -6,6 +6,7 @@ jdk:
 branches:
   only:
   - master-nbn
+  - travis-test
 
 before_install:
 - mkdir -p ~/.m2; wget -q -O ~/.m2/settings.xml https://raw.githubusercontent.com/nbnuk/travis-build-configuration/master/travis_maven_settings.xml
@@ -22,7 +23,7 @@ before_install:
 - cd $TRAVIS_BUILD_DIR
 - echo TRAVIS_PULL_REQUEST = ${TRAVIS_PULL_REQUEST}
 script:
-- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then mvn -P travis clean deploy;
+- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then mvn -P travis clean install deploy;
   else mvn -P travis clean install; fi
 env:
   global:
