@@ -23,7 +23,7 @@ before_install:
 - cd $TRAVIS_BUILD_DIR
 - echo TRAVIS_PULL_REQUEST = ${TRAVIS_PULL_REQUEST}
 script:
-- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then mvn -P travis clean install deploy;
+- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then mvn -P travis clean install && mvn -P travis deploy;
   else mvn -P travis clean install; fi
 env:
   global:
